@@ -33,6 +33,12 @@ public abstract class Transport {
             this.engineVolume = engineVolume;
         } else this.engineVolume = 1.5F;
     }
+    private Car.TypeOfBody typeOfBody;
+    public Car.TypeOfBody getTypeOfBody() {
+        return typeOfBody;
+    }
+
+    public abstract void printType();
     public abstract void start();
     public abstract void stop();
 }
