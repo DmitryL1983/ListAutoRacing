@@ -74,5 +74,9 @@ public class Truck extends Transport implements Competing{
     public int maxSpeed() {
         return (int) (Math.random() * 70);
     }
+    @Override
+    public boolean service() {
+        return Math.random()>0.75;
+    }
 
 }

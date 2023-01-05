@@ -11,6 +11,7 @@ public abstract class Driver <T extends Transport>{
         this.name = name;
         this.hasDrivingLicense = hasDrivingLicense;
         this.experience = experience;
+       // setExperience(experience);
     }
 
     public String getName() {
@@ -29,7 +30,10 @@ public abstract class Driver <T extends Transport>{
         return experience;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(int experience) throws IllegalAccessException {
+        if (experience==0){
+            throw new IllegalAccessException("Необходимо указать категорию прав!");
+        }
         this.experience = experience;
     }
 

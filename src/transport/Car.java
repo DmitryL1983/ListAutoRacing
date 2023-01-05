@@ -66,5 +66,11 @@ public class Car extends Transport implements Competing{
         return (int) (Math.random() * 200);
     }
 
+    @Override
+    public boolean service() {
+        return Math.random()>0.7;
+    }
+
+
 
 }
