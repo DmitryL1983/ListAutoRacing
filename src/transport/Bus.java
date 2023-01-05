@@ -53,7 +53,7 @@ public class Bus extends Transport implements Competing{
 
     @Override
     public boolean service() {
-        System.out.println("Автобус "+ getBrand() + " " + getModel() + "в диагносьтике не требуется");
+        System.out.println("Автобус "+ getBrand() + " " + getModel() + "в диагностика не требуется");
         return true;
     }
 

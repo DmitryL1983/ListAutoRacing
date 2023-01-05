@@ -1,5 +1,7 @@
 import transport.Bus;
 import transport.Car;
+//import transport.Transport;
+import transport.Transport;
 import transport.Truck;
 import transport.driver.DriverB;
 import transport.driver.DriverC;
@@ -29,18 +31,43 @@ public class Main {
         Bus bus2 = new Bus("ЛиАЗ", "677", 10F, Bus.Сapacity.EXTRA_SMALL);
         Bus bus3 = new Bus("ЛиАЗ", "5292", 10F, Bus.Сapacity.LARGE);
         Bus bus4 = new Bus("ПАЗ", "3292", 10F, Bus.Сapacity.MEDIUM);
+
+        service(
+                granta,audi,bmw,kia,
+                truck1,truck2,truck3,truck4,
+                bus1,bus2,bus3,bus4
+                );
         bus1.printType();
         bus2.printType();
         bus3.printType();
         bus4.printType();
+
+
         DriverB kolya = new DriverB("Николай", true, 3);
         DriverC syoma = new DriverC("Семён", true, 7);
         DriverD evgen = new DriverD("Евгений", true, 5);
+
 
 //        kolya.startMoving(audi);
 //        kolya.finishMoving(audi);
 //        kolya.refill(audi);
 //        kolya.printInfo(audi);
+    }
+    private static void service(Transport... transports) {
+        for (Transport transport : transports) {
+            serviceTransport(transport);
+        }
+    }
+
+    private static void serviceTransport(Transport transport) {
+        try {
+            if (!transport.service()) {
+                throw new RuntimeException("Автомобиль " + transport.getBrand() + " " + transport.getModel() + " не прошёл диагностику");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage()
+            );
+        }
     }
 
 }
