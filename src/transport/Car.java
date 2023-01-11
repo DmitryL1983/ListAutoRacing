@@ -71,6 +71,11 @@ public class Car extends Transport implements Competing{
         return Math.random()>0.7;
     }
 
+    @Override
+    public void repair() {
+        System.out.println("Легковой автомобиль " + getBrand() + " " +getModel() + " отремонтирован");
+    }
+
 
 
 }

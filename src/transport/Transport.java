@@ -1,4 +1,7 @@
 package transport;
+import transport.driver.Driver;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Transport {
     private String brand;
@@ -8,6 +11,21 @@ public abstract class Transport {
         setBrand(brand);
         setModel(model);
         setEngineVolume(engineVolume);
+    }
+    private final List<Driver<?>> drivers = new ArrayList<>();
+    private final List<Mechanic<?>> mechanics = new ArrayList<>();
+
+    public List<Driver<?>> getDrivers() {
+        return drivers;
+    }
+    public List<Mechanic<?>> getMechanics() {
+        return mechanics;
+    }
+    public void addDriver(Driver<?> driver){
+        drivers.add(driver);
+    }
+    public void addMechanic(Mechanic<?> mechanic){
+        mechanics.add(mechanic);
     }
     public String getBrand() {
         return brand;
@@ -41,5 +59,7 @@ public abstract class Transport {
     public abstract void printType();
     public abstract void start();
     public abstract void stop();
+
     public abstract boolean service();
+    public abstract void repair();
 }

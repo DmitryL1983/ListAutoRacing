@@ -1,11 +1,11 @@
-import transport.Bus;
-import transport.Car;
+import transport.*;
 //import transport.Transport;
-import transport.Transport;
-import transport.Truck;
 import transport.driver.DriverB;
 import transport.driver.DriverC;
 import transport.driver.DriverD;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,10 +33,10 @@ public class Main {
         Bus bus4 = new Bus("ПАЗ", "3292", 10F, Bus.Сapacity.MEDIUM);
 
         service(
-                granta,audi,bmw,kia,
-                truck1,truck2,truck3,truck4,
-                bus1,bus2,bus3,bus4
-                );
+                granta, audi, bmw, kia,
+                truck1, truck2, truck3, truck4,
+                bus1, bus2, bus3, bus4
+        );
         bus1.printType();
         bus2.printType();
         bus3.printType();
@@ -47,27 +47,63 @@ public class Main {
         DriverC syoma = new DriverC("Семён", true, 7);
         DriverD evgen = new DriverD("Евгений", true, 5);
 
+        Mechanic<Car> kolyaM = new Mechanic<Car>("Николай", "Николаев", "ООО Гонки");
+        Mechanic<Truck> syomaM = new Mechanic<Truck>("Семён", "Семёнов", "ООО Заезды");
+        Mechanic<Bus> evgenM = new Mechanic<Bus>("Евгений", "Евгеньев", "ООО Быстрый пит-стоп");
+
+        List<Transport> transports = List.of(granta, truck1, bus1);
+        granta.addDriver (kolya);
+        granta.addMechanic(kolyaM);
+        printInfo(granta);
+
+        truck1.addDriver (syoma);
+        truck1.addMechanic(syomaM);
+        printInfo(truck1);
+
+        bus1.addDriver(evgen);
+        bus1.addMechanic(evgenM);
+        printInfo(bus1);
+
 
 //        kolya.startMoving(audi);
 //        kolya.finishMoving(audi);
 //        kolya.refill(audi);
 //        kolya.printInfo(audi);
     }
+
     private static void service(Transport... transports) {
         for (Transport transport : transports) {
             serviceTransport(transport);
         }
     }
 
-    private static void serviceTransport(Transport transport) {
-        try {
-            if (!transport.service()) {
-                throw new RuntimeException("Автомобиль " + transport.getBrand() + " " + transport.getModel() + " не прошёл диагностику");
+    private static void serviceTransport(Transport transport){
+            try {
+                if (!transport.service()) {
+                    throw new RuntimeException("Автомобиль " + transport.getBrand() + " " + transport.getModel() + " не прошёл диагностику");
+                }
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage()
+                );
             }
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage()
-            );
-        }
+
+            }
+    private static void printInfo(Transport transport) {
+        System.out.println();
+        System.out.println("Автомобиль " + transport.getBrand() + " " + transport.getModel());
+        System.out.println("Водители" + transport.getDrivers());
+        System.out.println("Механики" + transport.getMechanics());
+        System.out.println();
+         }
     }
 
-}
+
+
+
+
+
+
+
+
+
+
